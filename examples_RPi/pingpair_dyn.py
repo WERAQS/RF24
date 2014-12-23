@@ -20,10 +20,10 @@ from RF24 import *
 #radio = RF24(RPI_V2_GPIO_P1_15, BCM2835_SPI_CS0, BCM2835_SPI_SPEED_4MHZ)
 
 # Setup for GPIO 22 CE and CE1 CSN with SPI Speed @ 8Mhz
-#radio = RF24(RPI_V2_GPIO_P1_15, BCM2835_SPI_CS1, BCM2835_SPI_SPEED_8MHZ)
+radio = RF24(RPI_V2_GPIO_P1_15, BCM2835_SPI_CS0, BCM2835_SPI_SPEED_8MHZ)
 
 # Setup for GPIO 22 CE and CE0 CSN for RPi B+ with SPI Speed @ 8Mhz
-radio = RF24(RPI_BPLUS_GPIO_J8_22, RPI_BPLUS_GPIO_J8_24, BCM2835_SPI_SPEED_8MHZ)
+#radio = RF24(RPI_BPLUS_GPIO_J8_22, RPI_BPLUS_GPIO_J8_24, BCM2835_SPI_SPEED_8MHZ)
 
 
 pipes = [0xF0F0F0F0E1, 0xF0F0F0F0D2]
@@ -105,8 +105,7 @@ while 1:
 
 	            # Spew it
 	            print 'Got payload size=', len, ' value="', receive_payload, '"'
-		    logging.basicConfig(filename='example.log',level=logging.IN$
-                    logging.basicConfig(format='%(asctime)s %(message)s', datef$
+		    logging.basicConfig(filename='example.log',level=logging.INFO)
                     logging.info(receive_payload)
                     time.sleep(0.2)
 
