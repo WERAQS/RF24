@@ -7,6 +7,7 @@
 # 
 
 import time
+import logging
 from RF24 import *
 
 
@@ -104,6 +105,10 @@ while 1:
 
 	            # Spew it
 	            print 'Got payload size=', len, ' value="', receive_payload, '"'
+		    logging.basicConfig(filename='example.log',level=logging.IN$
+                    logging.basicConfig(format='%(asctime)s %(message)s', datef$
+                    logging.info(receive_payload)
+                    time.sleep(0.2)
 
             # First, stop listening so we can talk
             radio.stopListening()
