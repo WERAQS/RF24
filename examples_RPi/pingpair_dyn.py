@@ -38,8 +38,12 @@ millis = lambda: int(round(time.time() * 1000))
 print 'pyRF24/examples/pingpair_dyn/'
 radio.begin()
 radio.enableDynamicPayloads()
-radio.setRetries(5,15)
+radio.setDataRate(RF24_1MBPS) #best performance / distance option
+radio.setChannel(76)
+radio.setCRCLength(RF24_CRC_16)
+radio.setRetries(15,15)
 radio.printDetails()
+radio.setAutoAck(1)
 
 print ' ************ Role Setup *********** '
 while (inp_role !='0') and (inp_role !='1'):
@@ -105,16 +109,16 @@ while 1:
 
 	            # Spew it
 	            print 'Got payload size=', len, ' value="', receive_payload, '"'
-		    logging.basicConfig(filename='example.log',level=logging.INFO)
+		    logging.basicConfig(filename='/home/pi/Desktop/Log.txt',level=logging.INFO,format'%(asctime)s	%(message)s',datefmt='%d.%m.%Y	%H:%M:%S') #txt format for access autoimport compatibility
                     logging.info(receive_payload)
-                    time.sleep(0.2)
+                    time.sleep(0.5) #make it 1.5 if you have a node network greater than 150 nodes
 
             # First, stop listening so we can talk
             radio.stopListening()
 
             # Send the final one back.
-            radio.write(receive_payload)
-            print 'Sent response.'
+            #radio.write(receive_payload) #enable if necessary
+            #print 'Sent response.' #enable if necessary
 
             # Now, resume listening so we catch the next packets.
             radio.startListening()
